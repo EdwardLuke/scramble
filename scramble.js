@@ -1,15 +1,15 @@
 var d = document;
-var el = d.getElementsByTagName('h2')[0];
+var els = d.getElementsByClassName('scrambled');
 
-var possibleStrings = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "(", ")", "&hellip;"]
+var possibleStrings = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "(", ")", "&hellip;", "."]
+for (i = 0; i < els.length; i++) {
+	var el = els[i];
+	tagChars(el);
 
-//cycleString(el, "C", possibleStrings, 20);
-console.log(el.textContent);
-tagChars(el);
-
-var spans = el.getElementsByTagName('span');
-for (i = 0; i < spans.length; i++) {
-	cycleString(spans[i], spans[i].textContent, possibleStrings, 50);
+	var spans = el.getElementsByTagName('span');
+	for (j = 0; j < spans.length; j++) {
+		cycleString(spans[j], spans[j].textContent, possibleStrings, 50);
+	}
 }
 
 function tagChars(el, prepend, append) {
