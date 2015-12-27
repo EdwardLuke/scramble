@@ -2,6 +2,9 @@ var d = document;
 var els = d.getElementsByClassName('scrambled');
 
 var possibleStrings = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "(", ")", "&hellip;", "."]
+var MAX_TIME = 5000;
+var LETTER_TICK_DELAY = 50;
+
 for (i = 0; i < els.length; i++) {
 	var el = els[i];
 	tagChars(el);
@@ -28,12 +31,20 @@ function tagChars(el, prepend, append) {
 
 
 function cycleString(el, targetStr, possibleStrs, cycleDelay) {
+	var cycleNum = 0;
+
 	var interval = setInterval(function() {
 		el.innerHTML = randomString(possibleStrs);
 		
+		if (cycleNum * LETTER_TICK_DELAY > MAX_TIME) {
+			el.innerHTML = targetStr;
+		}
+
 		if (el.innerHTML === targetStr) {
 			clearInterval(interval);
 		}
+		
+		cycleNum++;
 	}, cycleDelay);
 }
 
